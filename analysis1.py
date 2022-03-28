@@ -67,4 +67,31 @@ class Einleitung(Scene):
         self.play(Write(tex_table),run_time=20)
         self.wait(4)
         wahrheitstafel = Text("Wahrheitstafel")
+        wahrheitstafel.to_corner(UP + LEFT)
+        self.play(
+            FadeOut(tex_table),
+            LaggedStart(*[Transform(junktoren, wahrheitstafel)]),
+        )
+        table = r"""
+        \begin{table}[]
+        \centering
+        \begin{tabular}{|l|l|l|l|l|l|l|}\hline
+        $A$ & $B$ & $\neg A$ & $A \wedge B$ & $A \vee B$ & $A \Rightarrow B$ & $A \Leftrightarrow B$ \\
+            w   & w   & f        & w            & w          & w                 & w                     \\
+            w   & f   & f        & f            & w          & f                 & f                     \\
+            f   & w   & w        & f            & w          & w                 & f                     \\
+            f   & f   & w        & f            & f          & w                 & w                     \\ \hline
+        \end{tabular}
+        \end{table}
+        """
+        tex_table = Tex(table)
+        self.play(Write(tex_table),run_time=20)
+        self.play(FadeOut(tex_table),FadeOut(junktoren))
+        gesetze = Text("Gesetze der Aussagenlogik")
+        gesetze1 = Text("Gesetze der Aussagenlogik")
+        gesetze1.to_corner(UP + LEFT)
+        self.play(Write(gesetze), )
+        self.wait(1)
+        self.play(Transform(gesetze, gesetze1))
+        self.wait(2)
 
