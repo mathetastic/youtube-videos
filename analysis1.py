@@ -20,19 +20,51 @@ class Einleitung(Scene):
         self.play(FadeIn(basel, shift=DOWN),)
         self.wait(3)
 
-        transform_title = Text("Ausage")
+        transform_title = Text("Aussage")
         transform_title.to_corner(UP + LEFT)
         self.play(
             Transform(title, transform_title),
             LaggedStart(*[FadeOut(obj, shift=DOWN) for obj in basel]),
         )
         aussage = Text("- mathematischer oder sprachlicher Satz \n- wahr oder falsch")
-        beispiel = Text("Beispiele")
+        beispiel = Text("Beispiele", font_size=32)
         beispiel.to_corner(UP+ LEFT)
         self.play(Write(aussage),)
         self.wait(4)
         self.play(
-            LaggedStart(*[FadeOut(obj, shift=DOWN) for obj in aussage]),
-            Transform(title, beispiel),
+            FadeOut(aussage),
+            LaggedStart(*[Transform(title, beispiel)]),
         )
-        
+        self.wait(1)
+        aussagen = MarkupText(
+            f'-7+8= 14 <span fgcolor="{RED}">\n- Paris ist eine schöne Stadt</span>', color=GREEN
+        )
+        self.play(Write(aussagen))
+        self.wait(5)
+        self.play(FadeOut(title),
+        FadeOut(aussagen))
+        junktoren = Text("Junktoren")
+        self.play(Write(junktoren))
+        self.wait(2)
+        transform_title = Text("Junktoren")
+        transform_title.to_corner(UP + LEFT)
+        self.play(Transform(junktoren, transform_title),)
+
+        table = r"""
+        \begin{table}[]
+        \centering
+        \begin{tabular}{|l|l|l|}\hline
+        Gesprochen & Symbol & Name   \\\hline
+        "nicht A" & $\neg A$ & \emph{Negation}  \\
+        "A und B" & $A \wedge B$ & \emph{Konjunktion}\\
+        "A oder B" & $A \vee B$ & \emph{Disjunktion}\\
+        "A impliziert B" & $A \implies B$ & \emph{Implikation} \\
+        "A gdw. B" & $A \iff B$ & \emph{Äquivalenz}    \\\hline
+        \end{tabular}
+        \end{table}
+        """
+        tex_table = Tex(table)
+        self.play(Write(tex_table),run_time=20)
+        self.wait(4)
+        wahrheitstafel = Text("Wahrheitstafel")
+
