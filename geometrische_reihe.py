@@ -7,7 +7,7 @@ class GeometrischeReihe(Scene):
         course = Text("V1G1 - Analyis 1 - Die geometrische Reihe",font_size=11, color=YELLOW)
         course.to_corner(DL)
         title = Text("Die geometrische Reihe")
-        Sum_Expression = Tex(r"$\sum_{i = 0}^{\infty}x^i$")
+        Sum_Expression = MathTex(r"\sum_{i = 0}^{\infty}x^i")
         VGroup(title, Sum_Expression).arrange(DOWN)
         self.wait(1)
         self.play(Write(course))
@@ -80,8 +80,12 @@ class GeometrischeReihe(Scene):
             Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(Sum_Expression,MathTex(r"=  \frac{1 - 0}{1 - x}\Leftrightarrow |x| < 1")).arrange(RIGHT))
         )
         self.wait(1)
-        QED = Text("QED")
         self.play(
-            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(Sum_Expression,MathTex(r"=  \frac{1}{1 - x}\Leftrightarrow |x| < 1"),QED).arrange(RIGHT))
+            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(Sum_Expression,MathTex(r"=  \frac{1}{1 - x}\Leftrightarrow |x| < 1")).arrange(RIGHT))
+        )
+        QED = Text("QED")
+        VGroup(Sum_Expression,formel,QED).arrange(RIGHT)
+        self.play(
+            Write(QED)
         )
         self.wait(5)
