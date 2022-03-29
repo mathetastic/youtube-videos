@@ -49,28 +49,79 @@ class Einleitung(Scene):
         transform_title = Text("Junktoren")
         transform_title.to_corner(UP + LEFT)
         self.play(Transform(junktoren, transform_title),)
+        self.play(FadeOut(junktoren))
 
-        table = r"""
-        \begin{table}[]
-        \centering
-        \begin{tabular}{|l|l|l|}\hline
-        Gesprochen & Symbol & Name   \\\hline
-        "nicht A" & $\neg A$ & \emph{Negation}  \\
-        "A und B" & $A \wedge B$ & \emph{Konjunktion}\\
-        "A oder B" & $A \vee B$ & \emph{Disjunktion}\\
+        table = r"""        
+
         "A impliziert B" & $A \implies B$ & \emph{Implikation} \\
         "A gdw. B" & $A \iff B$ & \emph{Äquivalenz}    \\\hline
         \end{tabular}
         \end{table}
         """
-        tex_table = Tex(table)
-        self.play(Write(tex_table),run_time=20)
+        #tex_table = Tex(table)
+        #self.add(tex_table)
+        t2 = (r"\neg A")
+        t1 = (r"\text{nicht A}")
+        t3 = (r"\text{Negation}")
+        t4 = (r"\text{A und B}")
+        t5= (r"A \wedge B")
+        t6 = (r"\text{Konjunktion}")
+        t7 = (r"\text{A oder B}")
+        t8 = (r"A \vee B")
+        t9 = (r"\text{Disjunktion}")
+        t10 = (r"\text{A impliziert B")
+        t11= (r"A \iff B")
+        t12= (r"\text{Implikation}")
+        t13 = (r"\text{A gdw. B}")
+        t14= (r"A \iff B")
+        t15 = (r"\text{Äquivalenz}")
+    
+        table = MathTable(
+            [[t1,t2,t3],
+            [t4,t5,t6],[t7,t8,t9],[t10,t11,t12],[t13,t14,t15]],
+            col_labels=[Text("Gesprochen", font_size=22), Text("Symbol",font_size=22), Text("Name",font_size=22)])
+        table.add(SurroundingRectangle(table.get_rows()[1]).set_color(GREEN))
+        self.add(table)
+        table1 = MathTable(
+            [[t1,t2,t3],
+            [t4,t5,t6],[t7,t8,t9],[t10,t11,t12],[t13,t14,t15]],
+            col_labels=[Text("Gesprochen", font_size=22), Text("Symbol",font_size=22), Text("Name",font_size=22)])
+        self.add(table1)
+        self.wait(4)
+        self.play(FadeOut(table))
+        table1.add(SurroundingRectangle(table.get_rows()[2]).set_color(GREEN))
+        table2 = MathTable(
+            [[t1,t2,t3],
+            [t4,t5,t6],[t7,t8,t9],[t10,t11,t12],[t13,t14,t15]],
+            col_labels=[Text("Gesprochen", font_size=22), Text("Symbol",font_size=22), Text("Name",font_size=22)])
+        self.add(table2)
+        self.wait(4)
+        self.play(FadeOut(table1))
+        table2.add(SurroundingRectangle(table.get_rows()[3]).set_color(GREEN))
+        table3 = MathTable(
+            [[t1,t2,t3],
+            [t4,t5,t6],[t7,t8,t9],[t10,t11,t12],[t13,t14,t15]],
+            col_labels=[Text("Gesprochen", font_size=22), Text("Symbol",font_size=22), Text("Name",font_size=22)])
+        self.add(table3)
+        self.wait(4)
+        self.play(FadeOut(table2))
+        table3.add(SurroundingRectangle(table.get_rows()[4]).set_color(GREEN))
+        table4 = MathTable(
+            [[t1,t2,t3],
+            [t4,t5,t6],[t7,t8,t9],[t10,t11,t12],[t13,t14,t15]],
+            col_labels=[Text("Gesprochen", font_size=22), Text("Symbol",font_size=22), Text("Name",font_size=22)])
+        self.add(table4)
+        self.wait(4)
+        self.play(FadeOut(table3))
+        table4.add(SurroundingRectangle(table.get_rows()[5]).set_color(GREEN))
+        
+    
+        
         self.wait(4)
         wahrheitstafel = Text("Wahrheitstafel")
         wahrheitstafel.to_corner(UP + LEFT)
         self.play(
-            FadeOut(tex_table),
-            LaggedStart(*[Transform(junktoren, wahrheitstafel)]),
+            LaggedStart(*[Transform(table4, wahrheitstafel)]),
         )
         table = r"""
         \begin{table}[]
@@ -85,8 +136,8 @@ class Einleitung(Scene):
         \end{table}
         """
         tex_table = Tex(table)
-        self.play(Write(tex_table),run_time=20)
-        self.play(FadeOut(tex_table),FadeOut(junktoren))
+        self.add(tex_table)
+        self.play(FadeOut(tex_table),FadeOut(table4))
         gesetze = Text("Gesetze der Aussagenlogik")
         gesetze1 = Text("Gesetze der Aussagenlogik")
         gesetze1.to_corner(UP + LEFT)
