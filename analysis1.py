@@ -81,7 +81,7 @@ class Einleitung(Scene):
             [t4,t5,t6],[t7,t8,t9],[t10,t11,t12],[t13,t14,t15]],
             col_labels=[Text("Gesprochen", font_size=22), Text("Symbol",font_size=22), Text("Name",font_size=22)])
         table.add(SurroundingRectangle(table.get_rows()[1]).set_color(GREEN))
-        self.add(table)
+        self.play(Write(table))
         table1 = MathTable(
             [[t1,t2,t3],
             [t4,t5,t6],[t7,t8,t9],[t10,t11,t12],[t13,t14,t15]],
