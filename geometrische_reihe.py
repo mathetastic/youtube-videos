@@ -73,18 +73,19 @@ class GeometrischeReihe(Scene):
         )
         self.wait(1)
         self.play(
-            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(MathTex(r"\sum_{i = 0}^{\infty}x^i"),MathTex(r"=  \frac{1 - \lim_{n \to \infty} x^n}{1 - x}")).arrange(RIGHT))
+            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(MathTex(r"\sum_{i = 0}^{\infty}x^i"),MathTex(r"=  \frac{1 - \displaystyle\lim_{n \to \infty} x^n}{1 - x}")).arrange(RIGHT))
         )
         self.wait(1)
         self.play(
             Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(Sum_Expression,MathTex(r"=  \frac{1 - 0}{1 - x}\Leftrightarrow |x| < 1")).arrange(RIGHT))
         )
         self.wait(1)
+        gr = VGroup(Sum_Expression,MathTex(r"=  \frac{1}{1 - x}\Leftrightarrow |x| < 1")).arrange(RIGHT)
         self.play(
-            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(Sum_Expression,MathTex(r"=  \frac{1}{1 - x}\Leftrightarrow |x| < 1")).arrange(RIGHT))
+            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),gr)
         )
         QED = Text("QED")
-        VGroup(Sum_Expression,formel,QED).arrange(RIGHT)
+        QED.next_to(gr,RIGHT)
         self.play(
             Write(QED)
         )
