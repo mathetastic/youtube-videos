@@ -40,7 +40,7 @@ class GeometrischeReihe(Scene):
             Write(Beispiel),
         )
         self.wait(3)
-        t= MathTex(r"= 1+ 1^1 + 1^2 + 1^3+ \ldots",substrings_to_isolate="1")
+        t= MathTex(r"= 1^0+ 1 + 1^2 + 1^3+ \ldots",substrings_to_isolate="1")
         t1= MathTex(r"\sum_{i = 0}^{\infty}1^i",substrings_to_isolate="1")
         t.set_color_by_tex("1", YELLOW)
         t1.set_color_by_tex("1", YELLOW)
@@ -50,8 +50,8 @@ class GeometrischeReihe(Scene):
             Transform(formel, t),
         )
         self.wait(3)
-        t2= MathTex(r"\sum_{i = 0}^{\infty}(-1)^i", substrings_to_isolate="-1")
-        t2.set_color_by_tex("-1", YELLOW)
+        t2= MathTex(r"\sum_{i = 0}^{\infty}(-1)^i", substrings_to_isolate="-")
+        t2.set_color_by_tex("-", YELLOW)
         self.play(Transform(Beispiel, Text("Beispiel 2").to_corner(UP+ LEFT)),
                 
         )
@@ -68,35 +68,6 @@ class GeometrischeReihe(Scene):
         FadeOut(Beispiel),
         FadeOut(Sum_Expression)
         )
-<<<<<<< HEAD
-        self.wait(1)
-        self.play(
-            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(MathTex(r"\sum_{i = 0}^{n}x^i"),MathTex(r"= \frac{1-x^n}{1-x}")).arrange(RIGHT))
-        )
-        self.wait(1)
-        self.play(
-            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(MathTex(r"\lim_{n \to \infty} \sum_{i = 0}^{n}x^i"),MathTex(r"= \lim_{n \to \infty} \frac{1 - x^n}{1 - x}")).arrange(RIGHT))
-        )
-        self.wait(1)
-        self.play(
-            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(MathTex(r"\sum_{i = 0}^{\infty}x^i"),MathTex(r"=  \frac{1 - \displaystyle\lim_{n \to \infty} x^n}{1 - x}")).arrange(RIGHT))
-        )
-        self.wait(1)
-        self.play(
-            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),VGroup(Sum_Expression,MathTex(r"=  \frac{1 - 0}{1 - x}\Leftrightarrow |x| < 1")).arrange(RIGHT))
-        )
-        self.wait(1)
-        gr = VGroup(Sum_Expression,MathTex(r"=  \frac{1}{1 - x}\Leftrightarrow |x| < 1")).arrange(RIGHT)
-        self.play(
-            Transform(VGroup(Sum_Expression,formel).arrange(RIGHT),gr)
-        )
-        QED = Text("QED")
-        QED.next_to(gr,RIGHT)
-        self.play(
-            Write(QED)
-        )
-        self.wait(5)
-=======
         self.wait(2)
         konvergenz = Text("Konvergenz der Reihe")
         self.play(Write(konvergenz))
@@ -115,4 +86,4 @@ class GeometrischeReihe(Scene):
         self.play(FadeOut(latex),FadeOut(summe))
         folgerung= MathTex(r"\sum_{i=0}^n x^i = \frac{1-x^{n+1}}{1-x}")
         self.play(Write(folgerung))
->>>>>>> 7f1e58f (geometrische_reihe.py)
+
